@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./_categoriesbar.scss";
 
 const keywords = [
+  "All",
   "Film Animation",
   "Autos Vehicles",
   "Music",
@@ -13,7 +14,6 @@ const keywords = [
   "Comedy",
   "Entertainment",
   "News Politics",
-  "How-to Style",
   "Education",
   "Science Technology",
   "Nonprofits Activism",
