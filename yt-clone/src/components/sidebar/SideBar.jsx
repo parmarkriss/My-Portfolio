@@ -12,6 +12,7 @@ import {
 
 
 const SideBar = ({ sideBar, handleTogglesidebar }) => {
+  
   return (
     <nav className={sideBar ? "sidebar open" : "sidebar"} onClick={()=> handleTogglesidebar(false)}>
       <li>
