@@ -8,7 +8,7 @@ const Header = ({handleTogglesidebar}) => {
   return (
     <div className='header'>
       <FaBars className='header__menu' size={26} onClick={()=> handleTogglesidebar()}/>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4N37TIgWC_QLpspNwGddZH8DhzljeYMFnA&s" alt="" className='header__logo'/>
+      <img src="http://pngimg.com/uploads/youtube/youtube_PNG2.png" alt="" className='header__logo'/>
       
       <form action="">
         <input type="text" placeholder='Search'/>

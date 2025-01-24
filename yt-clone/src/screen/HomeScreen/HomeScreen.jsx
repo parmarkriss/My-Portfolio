@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import CategoriesBar from '../components/categoriesbar/CategoriesBar'
-import Video from '../components/videos/Video'
+import CategoriesBar from '../../components/categoriesbar/CategoriesBar'
+import Video from '../../components/videos/Video'
 
 const HomeScreen = () => {
   return (
