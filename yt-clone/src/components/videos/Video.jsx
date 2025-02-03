@@ -22,7 +22,9 @@ const Video = ({ video }) => {
   const [channelIcons,setChannelIcons] = useState(null);  
 
   const seconds = moment.duration(duration).asSeconds();
-  const _duration = moment.utc(seconds * 1000).format("mm:ss")
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+
+  const _videoId = id?.videoId || id;
   
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Video = ({ video }) => {
       const { data: { items } } = await request('/videos', {
         params: {
           part: 'contentDetails,statistics',
-          id: id
+          id: _videoId,
         }
       })
       setDuration(items[0].contentDetails.duration)
@@ -38,7 +40,7 @@ const Video = ({ video }) => {
       
     }
     get_videos_details();
-  }, [id])
+  }, [_videoId])
 
   useEffect(() => {
     const get_channel_icon = async () => {
@@ -71,7 +73,7 @@ const Video = ({ video }) => {
       <div className="video__details">
         <span>
           <AiFillEye />  {numeral(views).format("0.a")} Views
-        </span>
+        </span> 
         <span>{moment(publishedAt).fromNow()}</span>
       </div>
       <div className="video__channel">
