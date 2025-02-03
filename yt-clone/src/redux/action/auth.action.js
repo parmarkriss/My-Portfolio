@@ -11,7 +11,8 @@ const login = () => async (dispatch) => {
     });
 
     const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' }); // Forces account selection
+    provider.setCustomParameters({ prompt: 'select_account' });
+    provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl') 
 
     const res = await signInWithPopup(auth, provider);
     const accessToken = await res.user.getIdToken(); 
@@ -23,7 +24,6 @@ const login = () => async (dispatch) => {
 
     sessionStorage.setItem('yt-access-token', accessToken);
     sessionStorage.setItem('yt-user', JSON.stringify(profile));
-
 
     dispatch({
       type: LOGIN_SUCCESS,
