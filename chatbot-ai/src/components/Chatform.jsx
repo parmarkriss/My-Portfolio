@@ -20,7 +20,7 @@ const Chatform = ({chathistory, setChathistory,generateBotmessage }) => {
           { role: 'model', text: "Thinking..." }
         ]);
         generateBotmessage([...chathistory, { role: 'user', text: usermessage }]);
-      }, 600);
+      });
   };
 
   return (

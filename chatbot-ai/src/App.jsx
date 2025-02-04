@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import ChatbotIcon from './components/ChatbotIcon'
 import Chatform from './components/Chatform';
 import Chatmessage from './components/Chatmessage';
@@ -6,11 +6,59 @@ import Chatmessage from './components/Chatmessage';
 const App = () => {
   
   const [chathistory, setChathistory] = useState([]);
+  const chatBodyRef = useRef();
 
-  const generateBotmessage = (history) =>{
-     console.log(history);
-     
-  } 
+  const generateBotmessage = async (history) => {
+    const updateHistory = (text) => {
+      setChathistory((prev) => [
+        ...prev.filter((msg) => msg.text !== "Thinking..."),
+        { role: "model", text },
+      ]);
+    };
+  
+    console.log("Generating bot message with history:", history);
+  
+    const formattedHistory = history.map(({ role, text }) => ({
+      role,
+      parts: [{ text }],
+    }));
+  
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: formattedHistory }),
+    };
+  
+    try {
+      const response = await fetch(import.meta.env.VITE_API_URL, requestOptions);
+  
+      const data = await response.json();
+    
+      
+  
+      if (!response.ok) {
+        throw new Error(data.error?.message || "Something went wrong");
+      }
+  
+      if (data?.candidates?.length > 0) {
+        const apiresponsetext = data.candidates[0].content.parts[0].text
+          .replace(/\*\*(.*?)\*\*/g, "$1")
+          .trim();
+  
+        updateHistory(apiresponsetext);
+      } else {
+        console.error("No valid candidates found in response");
+      }
+    } catch (error) {
+      console.error("Error during fetch:", error.message);
+    }
+  };
+
+  useEffect(()=>{
+       chatBodyRef.current.scrollTo({top: chatBodyRef.current.scrollHeight, behavior: "smooth"})
+  },[chathistory])
+  
+  
 
 
   return (
@@ -30,7 +78,7 @@ const App = () => {
         </div>
 
         {/* Chatbot Body */}
-        <div className="chatbot-body   flex-1 p-[25px] [22px] h-[460px] overflow-y-auto flex gap-[20px] flex-col shadow-custom ">
+        <div ref={chatBodyRef} className="chatbot-body   flex-1 p-[25px] [22px] h-[460px] overflow-y-auto flex gap-[20px] flex-col shadow-custom ">
           <div className="message bot-message flex gap-11 items-center">
             <ChatbotIcon />
             <p className="message-text p-[12px] [16px] max-w-[75%] whitespace-pre-line text-[0.95rem] break-words bg-[#F6F2FF] rounded-[13px] [13px] [13px] [13px]">Hey There 👋 <br /> How Can Help you Today?</p>
