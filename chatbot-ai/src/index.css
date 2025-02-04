@@ -45,5 +45,10 @@ body {
   flex-shrink: 0;
 }
 
+.chatbot-body{
+  scrollbar-width: thin;
+  scrollbar-color: #DDD3F9 transparent;
+}
+
 
 

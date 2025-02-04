@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ChatbotIcon from './components/ChatbotIcon'
 import Chatform from './components/Chatform';
+import Chatmessage from './components/Chatmessage';
 
 const App = () => {
+  
+  const [chathistory, setChathistory] = useState([]);
+
+  const generateBotmessage = (history) =>{
+     console.log(history);
+     
+  } 
+
+
   return (
     <div className="container">
       <div className="chatbot-popup relative w-[420px] h-[500px] overflow-hidden bg-[#fff] rounded-[15px] flex flex-col">
@@ -20,20 +30,21 @@ const App = () => {
         </div>
 
         {/* Chatbot Body */}
-        <div className="chatbot-body mb-[82px]  flex-1 p-[25px] [22px] h-[460px] overflow-y-auto flex gap-[20px] flex-col shadow-custom">
+        <div className="chatbot-body   flex-1 p-[25px] [22px] h-[460px] overflow-y-auto flex gap-[20px] flex-col shadow-custom ">
           <div className="message bot-message flex gap-11 items-center">
             <ChatbotIcon />
             <p className="message-text p-[12px] [16px] max-w-[75%] whitespace-pre-line text-[0.95rem] break-words bg-[#F6F2FF] rounded-[13px] [13px] [13px] [13px]">Hey There 👋 <br /> How Can Help you Today?</p>
           </div>
 
-          <div className="message user-message flex gap-11 flex-col items-end">
-            <p className="message-text p-[12px] [16px] max-w-[75%] whitespace-pre-line text-[0.95rem] break-words bg-[#6D4FC2] text-[#fff] rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[13px] rounded-br-[3px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, neque!</p>
-          </div>
+           {/* render the chat history dynamically */}
+          {chathistory.map((chat,index)=>{
+            return <Chatmessage key={index} chat={chat}/>
+          })}
         </div>
 
         {/* Chat Footer */}
         <div className="chat-footer  bottom-0 left-0 w-full bg-white p-[15px] rounded-b-[15px]">
-           <Chatform/>
+           <Chatform chathistory={chathistory} setChathistory={setChathistory} generateBotmessage={generateBotmessage}/>
         </div>
 
       </div>
