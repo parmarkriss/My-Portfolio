@@ -7,7 +7,7 @@ const Chatmessage = ({ chat }) => {
       <div
         className={`message ${
           chat.role === 'model' ? 'bot' : 'user'
-        }-message flex gap-11 items-center ${
+        }-message ${chat.isError ? "error" : ""} flex gap-11 items-center ${
           chat.role === 'model' ? 'justify-start' : 'justify-end'
         }`}
       >

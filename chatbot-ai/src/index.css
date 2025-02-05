@@ -14,9 +14,6 @@
 body {
   width: 100%;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  display: flex;
   background: linear-gradient(#c8c3fc, #DACDFF);
 }
 
@@ -49,6 +46,38 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #DDD3F9 transparent;
 }
+.chatbot-body  .message.error .message-text{
+   color: #ff0000;
+}
+
+@media (max-width: 520px) {
+   #chatbot-toggler{
+      right: 20px;
+      bottom: 20px;
+   }
+
+   .chatbot-popup {
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      border-radius: 0;
+      width: 100%;
+   }
+
+   .chatbot-popup .chat-header {
+     padding: 12px 15px;
+   }
+
+   .chatbot-body{
+      height: calc(90% - 55px);
+      padding: 25px 15px;
+   }
+
+   .chat-footer{
+     padding: 10px 15px 15px;
+   }
+}
+
 
 
 
