@@ -3,6 +3,7 @@ import ChatbotIcon from './ChatbotIcon';
 
 const Chatmessage = ({ chat }) => {
   return (
+    !chat.hideInchat && (
     <div>
       <div
         className={`message ${
@@ -23,6 +24,7 @@ const Chatmessage = ({ chat }) => {
         </p>
       </div>
     </div>
+    )
   );
 };
 
