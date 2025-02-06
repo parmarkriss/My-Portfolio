@@ -19,7 +19,7 @@ const Chatform = ({chathistory, setChathistory,generateBotmessage }) => {
           ...history,
           { role: 'model', text: "Thinking..."}
         ]); 
-        generateBotmessage([...chathistory, { role: 'user', text: `using the details provided above, please address this query: ${usermessage}` }]);
+        generateBotmessage([...chathistory, { role: 'user', text: usermessage}]);
       });
   };
 

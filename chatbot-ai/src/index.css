@@ -50,6 +50,16 @@ body {
    color: #ff0000;
 }
 
+.cl-internal-1j7ahlv {
+   width: 50px!important;
+   height: 50px!important;
+}
+
+.login{
+   background: #6648ba!important;
+   
+}
+
 @media (max-width: 520px) {
    #chatbot-toggler{
       right: 20px;

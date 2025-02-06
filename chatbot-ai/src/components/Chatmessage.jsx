@@ -3,7 +3,6 @@ import ChatbotIcon from './ChatbotIcon';
 
 const Chatmessage = ({ chat }) => {
   return (
-    !chat.hideInchat && (
     <div>
       <div
         className={`message ${
@@ -14,7 +13,7 @@ const Chatmessage = ({ chat }) => {
       >
         {chat.role === 'model' && <ChatbotIcon />}
         <p
-          className={`message-text p-[12px] max-w-[75%] whitespace-pre-line text-[0.95rem] break-words ${
+          className={`message-text text-start p-[12px] max-w-[75%] whitespace-pre-line text-[0.95rem] break-words ${
             chat.role === 'model'
               ? 'bg-[#F6F2FF] text-[#000] rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[13px] rounded-br-[13px]'
               : 'bg-[#6D4FC2] text-[#fff] rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px]'
@@ -25,7 +24,6 @@ const Chatmessage = ({ chat }) => {
       </div>
     </div>
     )
-  );
 };
 
 export default Chatmessage;
