@@ -3,7 +3,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from "@clerk/c
 import HomePages from './HomePages';
 import messages from '../components/Message';
 
-// Adding the getDayOfYear function to Date object for easy calculation
 Date.prototype.getDayOfYear = function () {
     const start = new Date(this.getFullYear(), 0, 0);
     const diff = this - start;
@@ -14,52 +13,42 @@ Date.prototype.getDayOfYear = function () {
 const LoginPages = () => {
     const { user } = useUser();
     const [message, setMessage] = useState('');
-    const [lastMessageDay, setLastMessageDay] = useState(null);
+
 
     useEffect(() => {
-        // Get the current day of the year (1-365)
         const currentDayOfYear = new Date().getDayOfYear();
-
-        // Get the last day stored in localStorage
         const storedMessageDay = localStorage.getItem('lastMessageDay');
 
-        // If the stored day doesn't match today's day, show a new message
         if (storedMessageDay !== currentDayOfYear.toString()) {
-            // Get a new message for today (using modulo to ensure messages loop if less than 365)
             const messageIndex = currentDayOfYear % messages.length;
             setMessage(messages[messageIndex]);
-
-            // Save the new day to localStorage and update state
             localStorage.setItem('lastMessageDay', currentDayOfYear);
-            setLastMessageDay(currentDayOfYear);
         } else {
-            // If the day is the same, retrieve the last stored message
             setMessage(messages[storedMessageDay % messages.length]);
         }
     }, []);
 
-    // Get the current hour for greeting
     const currentHour = new Date().getHours();
 
-    // Function to return the greeting message based on time
     const getGreeting = () => {
         if (currentHour < 12) {
-            return "Good Morning";
+          return "Good Morning";
         } else if (currentHour < 18) {
-            return "Good Afternoon";
+          return "Good Afternoon";
+        } else if (currentHour < 21) {
+          return "Good Evening";
         } else {
-            return "Good Evening";
+          return "Good Night";
         }
-    };
-
+      };
+      
     return (
         <div>
-            {/* Header section - Only shows if user is signed in */}
             <SignedIn>
                 <div className="login p-4 shadow-lg flex justify-between items-center py-[10px] px-[50px]">
                     <div className="flex items-center">
                         <img src="/images/chatbot.png" alt="ChatBot" className='w-[40px] me-[10px]' />
-                        <h1 className="text-[28px] font-semibold text-gray-700">ChatBot-Ai</h1>
+                        <h1 className="text-[28px] font-semibold text-[#FFFFFF]">ChatBot-Ai</h1>
                     </div>
                     <div className="flex items-center space-x-4">
                         <UserButton />
@@ -67,7 +56,6 @@ const LoginPages = () => {
                 </div>
             </SignedIn>
 
-            {/* Centered sign-out and sign-in section */}
             <div className="flex justify-center items-center min-h-screen">
                 <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-[400px] text-center">
                     <SignedOut>
@@ -84,13 +72,22 @@ const LoginPages = () => {
                         </div>
                     </SignedOut>
 
-
                     <SignedIn>
                         <div className="mb-4">
                             {user && (
                                 <>
-                                    <h2 className="text-2xl font-semibold">{getGreeting()}, Hii {user.firstName}!</h2>
-                                    <p className="mt-4 text-lg text-gray-600">{message}</p> {/* Display the unique message */}
+                                    <h2 className="text-[30px] font-semibold text-[#800020] shadow-lg">
+                                        Hii {user.firstName}! {getGreeting()}
+                                    </h2>
+
+                                    <p className="mt-[5px] text-[18px] text-[#2e4154]">{message}</p>
+
+                                    <p className="text-[16px] font-medium text-[#502d2d] mb-[20px]  mt-[5px] animate-typewriter">
+                                        <span class="material-symbols-outlined " style={{ fontWeight: "bold" }}>
+                                            lightbulb
+                                        </span>
+                                        Tip: Click the chatbot icon at the bottom right corner for instant AI assistance!
+                                    </p>
                                     <HomePages />
                                 </>
                             )}
