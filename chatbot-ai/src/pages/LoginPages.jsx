@@ -57,16 +57,16 @@ const LoginPages = () => {
             </SignedIn>
 
             <div className="flex justify-center items-center min-h-screen">
-                <div className="bg-white p-8 rounded-lg shadow-lg w-full sm:w-[400px] text-center">
+                <div className="bg-[#ededed] rounded-[10px] shadow-lg w-[50%] text-center px-[15px] py-[20px]">
                     <SignedOut>
                         <div className="mb-4 text-center">
-                            <p className="text-[26px] font-bold text-[#800020] mb-[10px]">
+                            <p className="text-[24px] font-bold text-[#800020] mb-[10px]">
                                 Welcome back! Sign in to get started and experience the best of ChatBot-Ai.
                             </p>
                             <p className="text-[18px] text-[#2F4F6D] mb-[20px]">
                                 Your AI assistant is just one click away. Let's get started!
                             </p>
-                            <SignInButton className="w-[200px] h-[50px] bg-gradient-to-r from-[#6D4FC2] to-[#593bab] text-[#fff] py-2 rounded-[10px] hover:opacity-90 transition duration-300 border-none shadow-lg">
+                            <SignInButton className="w-[175px] h-[50px] bg-gradient-to-r from-[#6D4FC2] to-[#593bab] text-[#fff] py-2 rounded-[10px] hover:opacity-90 transition duration-300 border-none shadow-lg">
                                 Sign In
                             </SignInButton>
                         </div>

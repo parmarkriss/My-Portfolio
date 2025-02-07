@@ -1,8 +1,9 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:wght@100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:wght@100..900&display=swap');
 
 * {
   margin: 0;
@@ -61,29 +62,25 @@ body {
 }
 
 @keyframes typewriter {
-  from {
+  0% {
     width: 0;
   }
-  to {
+  100% {
     width: 100%;
   }
-
 }
 
 .animate-typewriter {
   display: inline-block;
-  animation: typewriter 12s steps(50) forwards, blink 0.75s steps(50) infinite;
+  animation: typewriter 3s ease-in-out forwards;
   white-space: nowrap;
   overflow: hidden;
-  align-items: center;
 }
 
 .animate-typewriter.done {
   animation: none;
   border: none;
 }
-
-
 
 @media (max-width: 520px) {
    #chatbot-toggler{
@@ -111,7 +108,18 @@ body {
    .chat-footer{
      padding: 10px 15px 15px;
    }
+
+   .animate-typewriter {
+    white-space: normal;
+    word-break: break-word;
+    display: block;
+    animation: typewriter 3s ease-in-out forwards;
+ }
 }
+
+/* <button className="material-symbols-rounded w-[40px] h-[40px] border-none outline-none text-[#fff] pt-[2px] bg-[#6D4FC2] transition-all duration-200 ease-in-out text-[1.31rem] cursor-pointer rounded-full hover:bg-[#593bab] ml-auto" onClick={() => setShowChatbot(prev => !prev)}>
+keyboard_arrow_down
+</button> */
 
 
 
